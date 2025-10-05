@@ -48,14 +48,14 @@ public List<Reserva> buscarTodas() {
         
         reserva.setCliente(doc.getString("cliente"));
         reserva.setPacote(doc.getString("pacote"));
-        
-        Double valorDoBanco = doc.getDouble("valor");
-        if (valorDoBanco != null) {
-        reserva.setValor(valorDoBanco);
-        } else {
-        reserva.setValor(0.0); 
-        }
         reserva.setStatus(doc.getString("status"));
+      
+        Number valorDoBanco = doc.get("valor", Number.class); 
+        if (valorDoBanco != null) {
+            reserva.setValor(valorDoBanco.doubleValue()); 
+        } else {
+            reserva.setValor(0.0);
+        }     
         
         String dataString = doc.getString("data_saida");
         if (dataString != null && !dataString.isEmpty()) {
