@@ -1,0 +1,17 @@
+[
+  { "cliente": "Pedro Gomes", "pacote": "Roma 7 dias", "valor": 6500.00, "data_saida": "2025-10-20", "status": "confirmado" },
+  { "cliente": "Juliana Mendes", "pacote": "Paris 5 dias", "valor": 7200.00, "data_saida": "2025-11-10", "status": "pendente" },
+  { "cliente": "André Santos", "pacote": "Buenos Aires 4 dias", "valor": 2800.00, "data_saida": "2025-12-05", "status": "confirmado" },
+  { "cliente": "Fernanda Lima", "pacote": "Lisboa 6 dias", "valor": 5400.00, "data_saida": "2026-01-15", "status": "confirmado" },
+  { "cliente": "Carlos Oliveira", "pacote": "Nova York 7 dias", "valor": 9500.00, "data_saida": "2026-02-20", "status": "pendente" },
+  { "cliente": "Marina Costa", "pacote": "Tóquio 10 dias", "valor": 13500.00, "data_saida": "2026-03-05", "status": "confirmado" },
+  { "cliente": "João Silva", "pacote": "Londres 5 dias", "valor": 8100.00, "data_saida": "2026-04-01", "status": "cancelado" },
+  { "cliente": "Beatriz Souza", "pacote": "Cancún 7 dias", "valor": 7200.00, "data_saida": "2026-05-18", "status": "pendente" },
+  { "cliente": "Rafael Gomes", "pacote": "Dubai 6 dias", "valor": 11000.00, "data_saida": "2026-06-10", "status": "confirmado" },
+  { "cliente": "Clara Mendes", "pacote": "Santiago 4 dias", "valor": 3200.00, "data_saida": "2026-07-12", "status": "confirmado" },
+  { "cliente": "Rodrigo Alves", "pacote": "Orlando 8 dias", "valor": 8900.00, "data_saida": "2026-08-05", "status": "pendente" },
+  { "cliente": "Patrícia Ramos", "pacote": "Atenas 6 dias", "valor": 6000.00, "data_saida": "2026-09-20", "status": "confirmado" },
+  { "cliente": "Felipe Castro", "pacote": "Roma 7 dias", "valor": 6500.00, "data_saida": "2026-10-15", "status": "confirmado" },
+  { "cliente": "Camila Oliveira", "pacote": "Buenos Aires 4 dias", "valor": 2800.00, "data_saida": "2026-11-03", "status": "pendente" },
+  { "cliente": "Eduardo Silva", "pacote": "Paris 5 dias", "valor": 7200.00, "data_saida": "2026-12-10", "status": "cancelado" }
+]
