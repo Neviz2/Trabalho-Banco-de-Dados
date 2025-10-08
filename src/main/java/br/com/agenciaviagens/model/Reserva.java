@@ -2,8 +2,10 @@ package br.com.agenciaviagens.model;
 
 import java.time.LocalDate;
 
+import org.bson.Document;
+
 public class Reserva {
-   
+
     private String cliente;
     private String pacote;
     private double valor;
@@ -58,7 +60,16 @@ public class Reserva {
         this.status = status;
     }
 
-    // 3. Um método toString() para facilitar a impressão do objeto
+   public static Reserva fromDocument(Document doc) {
+    String cliente = doc.getString("cliente");
+    String pacote = doc.getString("pacote");
+    double valor = doc.getDouble("valor");
+    LocalDate dataSaida = LocalDate.parse(doc.getString("dataSaida")); // supondo que está como String
+    String status = doc.getString("status");
+    return new Reserva(cliente, pacote, valor, dataSaida, status);
+}
+
+    
     @Override
     public String toString() {
         return "Reserva [cliente=" + cliente + ", pacote=" + pacote + ", valor=" + valor + ", dataSaida=" + dataSaida

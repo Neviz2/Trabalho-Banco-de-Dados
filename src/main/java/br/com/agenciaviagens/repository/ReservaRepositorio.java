@@ -43,6 +43,8 @@ public List<Reserva> buscarTodas() {
     Document filtro = Document.parse(consultaJson);
 
     for (Document doc : collection.find(filtro)) {
+
+        
         
         Reserva reserva = new Reserva(consultaJson, consultaJson, 0, null, consultaJson);
         
@@ -69,6 +71,19 @@ public List<Reserva> buscarTodas() {
     return reservas;
 }
 
+
+    public List<Reserva> buscarCliente(String nomeCli){
+    List<Reserva> reservas = new ArrayList<>();
+
+    Document filtro = new Document("cliente", nomeCli);
+
+    for(Document doc : collection.find(filtro)){
+        Reserva reserva = Reserva.fromDocument(doc);
+        reservas.add(reserva);
+    }
+
+    return reservas;
+}
 
     // Aqui virão os outros métodos: buscarTodas(), salvar(), etc.
 }
