@@ -87,5 +87,19 @@ public List<Reserva> buscarTodas() {
     return reservas;
 }
 
+    public boolean deletarCliente(String nomeCli) {
+    long deletados = collection.deleteOne(new Document("cliente", nomeCli)).getDeletedCount();
+
+    if(deletados > 0){
+        System.out.println("Reserva de " + nomeCli + " foi apagada com sucesso!");
+        return true;
+    }else{
+        System.out.println("Reserva nao encontrada!");
+        return false;
+    }
+}
+
+
+
     // Aqui virão os outros métodos: buscarTodas(), salvar(), etc.
 }

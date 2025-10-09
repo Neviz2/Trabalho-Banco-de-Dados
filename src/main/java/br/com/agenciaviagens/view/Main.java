@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         
          Scanner tec = new Scanner(System.in);
-
+        String nomeCliente;
 
         ReservaRepositorio meuRepositorio = new ReservaRepositorio();
 
@@ -24,6 +24,7 @@ public class Main {
             System.out.println("\n--- Menu de Opções ---");
             System.out.println("1. Buscar todas as reservas");
             System.out.println("2. Buscar reservas por cliente");
+             System.out.println("4. deletar reserva por cliente");
             System.out.println("3. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = tec.nextInt();
@@ -37,7 +38,7 @@ public class Main {
                 case 2:
                     // Lógica para buscar reservas por cliente
                     System.out.print("Digite o nome do cliente: ");
-                    String nomeCliente = tec.nextLine();
+                     nomeCliente = tec.nextLine();
                     System.out.println("Buscando reservas para o cliente: " + nomeCliente);
                     List<Reserva> buscarCliente = meuRepositorio.buscarCliente(nomeCliente);
                     for (Reserva reserva : buscarCliente) {
@@ -45,9 +46,20 @@ public class Main {
                     }
                     break;
                 case 3:
-                    System.out.println("Saindo...");
+                    System.out.println("Informe o nome do cliente: ");
+                    nomeCliente = tec.nextLine();
+                    boolean certo = meuRepositorio.deletarCliente(nomeCliente);
+
+                    if(certo){
+                        System.out.println("Reserva deletada com sucesso!");
+                    } else {
+                        System.out.println("Nenhuma reserva encontrada para o cliente informado!");
+                    }
+                    break;
                 case 4:
-                    System.out.println("Saindo...");
+                    System.out.println("lucas");
+                case 5:
+                    System.out.println("Saindo...");               
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
