@@ -100,6 +100,20 @@ public List<Reserva> buscarTodas() {
 }
 
 
+    public void substituirRseserva(String nomeCli, Reserva novaReserva) {
+
+        Document filtro = new Document("cliente", nomeCli);
+        Document novoDoc = new Document()
+                .append("cliente", novaReserva.getCliente())
+                .append("pacote", novaReserva.getPacote())
+                .append("valor", novaReserva.getValor())
+                .append("dataSaida", novaReserva.getDataSaida().toString())
+                .append("status", novaReserva.getStatus());
+
+        collection.replaceOne(filtro, novoDoc);
+        System.out.println("Reserva de " + nomeCli + " foi atualizada com sucesso!");
+    }
+
 
     // Aqui virão os outros métodos: buscarTodas(), salvar(), etc.
 }

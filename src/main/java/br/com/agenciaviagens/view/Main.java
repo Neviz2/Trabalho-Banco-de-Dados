@@ -14,7 +14,8 @@ public class Main {
     public static void main(String[] args) {
         
          Scanner tec = new Scanner(System.in);
-        String nomeCliente;
+        String nomeCliente, pacote, status, data;
+        double valor = 0;
 
         ReservaRepositorio meuRepositorio = new ReservaRepositorio();
 
@@ -24,7 +25,7 @@ public class Main {
             System.out.println("\n--- Menu de Opções ---");
             System.out.println("1. Buscar todas as reservas");
             System.out.println("2. Buscar reservas por cliente");
-             System.out.println("4. deletar reserva por cliente");
+            System.out.println("4. deletar reserva por cliente");
             System.out.println("3. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = tec.nextInt();
@@ -57,7 +58,21 @@ public class Main {
                     }
                     break;
                 case 4:
-                    System.out.println("lucas");
+                    System.out.println("Digite o nome do cliente para atualizar a reserva: ");
+                    nomeCliente = tec.nextLine();
+                    System.out.println("Digite o novo pacote: ");
+                    pacote = tec.nextLine();
+                    System.out.println("Digite o novo valor: ");
+                    valor = tec.nextDouble();
+                    tec.nextLine(); // Consumir a quebra de linha
+                    System.out.println("Digite a nova data de saída (YYYY-MM-DD): ");
+                    data = tec.nextLine();
+                    System.out.println("Digite o novo status: ");
+                    status = tec.nextLine();
+                    Reserva novaReserva = new Reserva(nomeCliente, pacote, valor, java.time.LocalDate.parse(data), status);
+                    meuRepositorio.substituirRseserva(nomeCliente, novaReserva);
+                    System.out.println("Reserva atualizada com sucesso!");
+                    break;
                 case 5:
                     System.out.println("Saindo...");               
                     break;
@@ -67,7 +82,7 @@ public class Main {
 
 
         }
-        while (opcao != 3);
+        while (opcao != 5);
 
         
     
