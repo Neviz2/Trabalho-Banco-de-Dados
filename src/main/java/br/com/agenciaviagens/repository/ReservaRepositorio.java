@@ -99,7 +99,6 @@ public List<Reserva> buscarTodas() {
     }
 }
 
-
     public void substituirRseserva(String nomeCli, Reserva novaReserva) {
 
         Document filtro = new Document("cliente", nomeCli);

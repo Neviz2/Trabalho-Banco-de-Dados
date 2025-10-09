@@ -14,7 +14,8 @@ public class Main {
     public static void main(String[] args) {
         
          Scanner tec = new Scanner(System.in);
-        String nomeCliente, pacote, status, data;
+        String nomeCliente, pacote, status;
+        String data;
         double valor = 0;
 
         ReservaRepositorio meuRepositorio = new ReservaRepositorio();
@@ -60,15 +61,20 @@ public class Main {
                     }
                     break;
                 case 4:
-                    System.out.println("Digite o nome do cliente para atualizar a reserva: ");
+
+        
+                    System.out.println("Digite o nome do cliente para atualizar a reserva:");
                     nomeCliente = tec.nextLine();
                     System.out.println("Digite o novo pacote: ");
                     pacote = tec.nextLine();
+                    //tec.nextLine();
                     System.out.println("Digite o novo valor: ");
-                    valor = tec.nextDouble();
-                    tec.nextLine(); // Consumir a quebra de linha
-                    System.out.println("Digite a nova data de saída (YYYY-MM-DD): ");
+                    valor = tec.nextDouble(); 
+                    tec.nextLine(); 
+                    System.out.println("Digite a nova data de saída (YYYY-MM-DD):");
                     data = tec.nextLine();
+
+
                     System.out.println("Digite o novo status: ");
                     status = tec.nextLine();
                     Reserva novaReserva = new Reserva(nomeCliente, pacote, valor, java.time.LocalDate.parse(data), status);
