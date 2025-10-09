@@ -25,11 +25,13 @@ public class Main {
         do{
             System.out.println("\n--- Menu de Opções ---");
             System.out.println("1. Buscar todas as reservas");
-            System.out.println("2. Buscar reservas por cliente");
-            System.out.println("3. Deletar reserva por cliente");
-            System.out.println("4. Atualizar reserva por cliente");
-            System.out.println("5.")
-            System.out.println("6. Sair");
+            System.out.println("2. Buscar reservas por cliente"); // murilo 
+            System.out.println("3. Deletar reserva por cliente"); // murilo 
+            System.out.println("4. Atualizar reserva por cliente"); // Lucas
+            System.out.println("5. Calcular quantos pacotes foram vendidos por destino"); // Lucas
+            System.out.println("6. Alterar a data de saída de uma reserva");
+            System.out.println("7. Registrar novo pacote ou nova reserva");
+            System.out.println("8. SAIR do SISTEMA");
             System.out.print("Escolha uma opção: ");
             opcao = tec.nextInt();
             tec.nextLine(); // Consumir a quebra de linha
@@ -38,8 +40,12 @@ public class Main {
                 case 1:
                     // Lógica para buscar todas as reservas
                     System.out.println("Buscando todas as reservas...");
+                    List<Reserva> todasReservas = meuRepositorio.buscarTodas();
+                    for (Reserva reserva : todasReservas) {
+                        System.out.println(reserva);
+                    }   
                     break;
-                case 2:
+                case 2: // murilo 
                     // Lógica para buscar reservas por cliente
                     System.out.print("Digite o nome do cliente: ");
                      nomeCliente = tec.nextLine();
@@ -49,7 +55,7 @@ public class Main {
                         System.out.println(reserva);
                     }
                     break;
-                case 3:
+                case 3: // murilo 
                     System.out.println("Informe o nome do cliente: ");
                     nomeCliente = tec.nextLine();
                     boolean certo = meuRepositorio.deletarCliente(nomeCliente);
@@ -60,9 +66,7 @@ public class Main {
                         System.out.println("Nenhuma reserva encontrada para o cliente informado!");
                     }
                     break;
-                case 4:
-
-        
+                case 4: // Lucas
                     System.out.println("Digite o nome do cliente para atualizar a reserva:");
                     nomeCliente = tec.nextLine();
                     System.out.println("Digite o novo pacote: ");
@@ -73,18 +77,22 @@ public class Main {
                     tec.nextLine(); 
                     System.out.println("Digite a nova data de saída (YYYY-MM-DD):");
                     data = tec.nextLine();
-
-
                     System.out.println("Digite o novo status: ");
                     status = tec.nextLine();
                     Reserva novaReserva = new Reserva(nomeCliente, pacote, valor, java.time.LocalDate.parse(data), status);
                     meuRepositorio.substituirRseserva(nomeCliente, novaReserva);
                     System.out.println("Reserva atualizada com sucesso!");
                     break;
-                case 5:
+                case 5: // Lucas
                     System.out.println("Saindo...");               
                     break;
-                case 6:
+                case 6: // Diogo
+                    System.out.println("DIOGO...");      
+                    break;
+                case 7: // Diogo
+                    System.out.println("DIOGO...");      
+                    break;
+                case 8:
                     System.out.println("Saindo...");      
                     break;
                 default:
@@ -93,7 +101,7 @@ public class Main {
 
 
         }
-        while (opcao != 5);
+        while (opcao != 6);
 
         
     
