@@ -11,12 +11,14 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 
 // import com.mongodb.client.model.Filters; se precisar de filtros mias complexos depois.
 
 import br.com.agenciaviagens.model.Reserva;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 public class ReservaRepositorio{
 
@@ -75,7 +77,7 @@ public List<Reserva> buscarTodas() {
     public List<Reserva> buscarCliente(String nomeCli){
     List<Reserva> reservas = new ArrayList<>();
 
-    Document filtro = new Document("cliente", nomeCli);
+    Bson filtro = Filters.regex("cliente", "^" + nomeCli + "$", "i");
 
     for(Document doc : collection.find(filtro)){
         Reserva reserva = Reserva.fromDocument(doc);

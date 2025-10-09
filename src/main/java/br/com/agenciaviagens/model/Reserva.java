@@ -60,12 +60,22 @@ public class Reserva {
         this.status = status;
     }
 
-   public static Reserva fromDocument(Document doc) {
+public static Reserva fromDocument(Document doc) {
     String cliente = doc.getString("cliente");
     String pacote = doc.getString("pacote");
-    double valor = doc.getDouble("valor");
-    LocalDate dataSaida = LocalDate.parse(doc.getString("dataSaida")); // supondo que está como String
+
+    // Solução segura para qualquer tipo numérico (Integer ou Double)
+    Number valorNumber = doc.get("valor", Number.class);
+    double valor = valorNumber != null ? valorNumber.doubleValue() : 0.0;
+
+    // Trata a data como string — mas protege contra null
+    String dataSaidaStr = doc.getString("dataSaida");
+    LocalDate dataSaida = (dataSaidaStr != null && !dataSaidaStr.isEmpty())
+        ? LocalDate.parse(dataSaidaStr)
+        : null;
+
     String status = doc.getString("status");
+
     return new Reserva(cliente, pacote, valor, dataSaida, status);
 }
 
