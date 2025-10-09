@@ -25,8 +25,10 @@ public class Main {
             System.out.println("\n--- Menu de Opções ---");
             System.out.println("1. Buscar todas as reservas");
             System.out.println("2. Buscar reservas por cliente");
-            System.out.println("4. deletar reserva por cliente");
-            System.out.println("3. Sair");
+            System.out.println("3. Deletar reserva por cliente");
+            System.out.println("4. Atualizar reserva por cliente");
+            System.out.println("5.")
+            System.out.println("6. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = tec.nextInt();
             tec.nextLine(); // Consumir a quebra de linha
@@ -75,6 +77,9 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("Saindo...");               
+                    break;
+                case 6:
+                    System.out.println("Saindo...");      
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
