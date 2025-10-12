@@ -37,7 +37,7 @@ public class Main {
             tec.nextLine(); // Consumir a quebra de linha
 
             switch (opcao) {
-                case 1:
+                case 1: // teste
                     // Lógica para buscar todas as reservas
                     System.out.println("Buscando todas as reservas...");
                     List<Reserva> todasReservas = meuRepositorio.buscarTodas();
@@ -84,7 +84,9 @@ public class Main {
                     System.out.println("Reserva atualizada com sucesso!");
                     break;
                 case 5: // Lucas
-                    System.out.println("Saindo...");               
+                    System.out.println("Digite o nome do pacote para calcular o total vendido:");
+                    pacote = tec.nextLine();
+                    meuRepositorio.calcular(pacote);              
                     break;
                 case 6: // Diogo
                     System.out.println("DIOGO...");      

@@ -70,8 +70,8 @@ public List<Reserva> buscarTodas() {
     }
 
     System.out.println(reservas.size() + " reservas encontradas no banco de dados.");
-    return reservas;
-}
+        return reservas;
+    }
 
 
     public List<Reserva> buscarCliente(String nomeCli){
@@ -98,7 +98,7 @@ public List<Reserva> buscarTodas() {
         return false;
     }
 }
-
+//
     public void substituirRseserva(String nomeCli, Reserva novaReserva) {
 
         Document filtro = new Document("cliente", nomeCli);
@@ -112,7 +112,18 @@ public List<Reserva> buscarTodas() {
         collection.replaceOne(filtro, novoDoc);
         System.out.println("Reserva de " + nomeCli + " foi atualizada com sucesso!");
     }
-
-
-    // Aqui virão os outros métodos: buscarTodas(), salvar(), etc.
+//
+    public void calcular(String nomePacote){
+    double somaValores = 0.0;
+    Document filtro = new Document("pacote", nomePacote);
+    for (Document doc : collection.find(filtro)) {
+        Reserva reserva = Reserva.fromDocument(doc);
+        if (nomePacote.equals(reserva.getPacote())) {
+            somaValores += reserva.getValor(); // Paris 5 dias
+        }
+        
+    }
+    System.out.println("Soma dos valores das reservas do pacote " + nomePacote + ": " + somaValores);
+    
+}
 }
