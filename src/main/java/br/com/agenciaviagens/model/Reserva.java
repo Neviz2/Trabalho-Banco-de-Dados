@@ -1,6 +1,7 @@
 package br.com.agenciaviagens.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.bson.Document;
 
@@ -80,9 +81,30 @@ public static Reserva fromDocument(Document doc) {
 }
 
     
+    // @Override
+    // public String toString() {
+    //     return "Reserva [cliente=" + cliente + ", pacote=" + pacote + ", valor=" + valor + ", dataSaida=" + dataSaida
+    //             + ", status=" + status + "]";
+    // }
+
     @Override
-    public String toString() {
-        return "Reserva [cliente=" + cliente + ", pacote=" + pacote + ", valor=" + valor + ", dataSaida=" + dataSaida
-                + ", status=" + status + "]";
-    }
+public String toString() {
+    // Formatador para data no padrão BR
+
+
+    // Usa String.format para alinhar e formatar o valor como moeda
+    return String.format(
+        "----------------------------------------\n" +
+        " Cliente:    %s\n" +
+        " Pacote:     %s\n" +
+        " Status:     %s\n" +
+        " Data Saída: %s | Valor: R$ %.2f\n" +
+        "----------------------------------------",
+        this.cliente,
+        this.pacote,
+        this.status,
+        this.dataSaida,
+        this.valor
+    );
+}
 } 

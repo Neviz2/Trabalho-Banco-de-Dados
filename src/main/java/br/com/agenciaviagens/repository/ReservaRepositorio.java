@@ -12,6 +12,10 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.InsertOneResult;
+import com.mongodb.client.result.UpdateResult;
+import org.bson.types.ObjectId;
 
 // import com.mongodb.client.model.Filters; se precisar de filtros mias complexos depois.
 
@@ -126,4 +130,45 @@ public List<Reserva> buscarTodas() {
     System.out.println("Soma dos valores das reservas do pacote " + nomePacote + ": " + somaValores);
     
 }
+    public void inserirReserva(Reserva novaReserva) {
+        // converte o objeto para bson
+        Document doc = new Document()
+                .append("_id", new ObjectId()) // gera um id
+                .append("cliente", novaReserva.getCliente())
+                .append("pacote", novaReserva.getPacote())
+                .append("valor", novaReserva.getValor())
+                .append("data_saida", novaReserva.getDataSaida().toString()) 
+                .append("status", novaReserva.getStatus());
+
+        try {
+            // Insere o documento na coleção
+            collection.insertOne(doc);
+            System.out.println("Reserva inserida com sucesso! ID: ");
+        } catch (Exception e) {
+            System.err.println("Erro ao inserir reserva: " + e.getMessage());
+        }
+    }
+
+    
+    public boolean alterarDataSaida(String nomeCli, String novaData) {
+        
+        Bson filtro = Filters.regex("cliente", "^" + nomeCli + "$", "i");
+        Bson atualizacao = Updates.set("data_saida", novaData);
+
+        try {
+            UpdateResult resultado = collection.updateOne(filtro, atualizacao);
+
+            if (resultado.getModifiedCount() > 0) {
+                System.out.println("Data de saída da reserva de " + nomeCli + " atualizada com sucesso.");
+                return true;
+            } else {
+                System.out.println("Nenhuma reserva encontrada para o cliente: " + nomeCli + ". Nada foi alterado.");
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println("Erro ao atualizar data da reserva: " + e.getMessage());
+            return false;
+        }
+    }
+
 }

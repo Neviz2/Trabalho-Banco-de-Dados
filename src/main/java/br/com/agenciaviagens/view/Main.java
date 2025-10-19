@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-         Scanner tec = new Scanner(System.in);
+        Scanner tec = new Scanner(System.in);
         String nomeCliente, pacote, status;
         String data;
         double valor = 0;
@@ -89,10 +89,47 @@ public class Main {
                     meuRepositorio.calcular(pacote);              
                     break;
                 case 6: // Diogo
-                    System.out.println("DIOGO...");      
+                    System.out.println("--- Alterar Data de Saída ---");
+                    System.out.print("Digite o nome do cliente da reserva: ");
+                    nomeCliente = tec.nextLine();
+                    
+                    System.out.print("Digite a NOVA data de saída (YYYY-MM-DD): ");
+                    data = tec.nextLine();
+                    
+                    try {
+                        meuRepositorio.alterarDataSaida(nomeCliente, data);
+                    } catch (java.time.format.DateTimeParseException e) {
+                        System.out.println("Formato de data inválido! Use YYYY-MM-DD.");
+                    }
+
                     break;
+
                 case 7: // Diogo
-                    System.out.println("DIOGO...");      
+                System.out.println("--- Registrar Nova Reserva ---");
+                    
+                    System.out.print("Digite o nome do cliente: ");
+                    nomeCliente = tec.nextLine();
+                    
+                    System.out.print("Digite o pacote: ");
+                    pacote = tec.nextLine();
+                    
+                    System.out.print("Digite o valor: ");
+                    valor = tec.nextDouble();
+                    tec.nextLine(); 
+                    
+                    System.out.print("Digite a data de saída (YYYY-MM-DD): ");
+                    data = tec.nextLine();
+                    
+                    System.out.print("Digite o status (Ex: Pendente, Confirmada): ");
+                    status = tec.nextLine();
+                    
+                    try {
+                        // 2. Chamar o método do repositório passando o objeto
+                        meuRepositorio.inserirReserva(new Reserva(nomeCliente, pacote, valor, java.time.LocalDate.parse(data), status));
+                        
+                    } catch (java.time.format.DateTimeParseException e) {
+                        System.out.println("Erro: Formato de data inválido! Use YYYY-MM-DD. A reserva não foi criada.");
+                    }
                     break;
                 case 8:
                     System.out.println("Saindo...");      
@@ -100,17 +137,8 @@ public class Main {
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
-
-
         }
-        while (opcao != 6);
-
-        
-    
-        
-
-
+        while (opcao != 8);
         tec.close();
-        
     }
 }
