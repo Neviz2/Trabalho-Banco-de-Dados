@@ -110,7 +110,7 @@ public List<Reserva> buscarTodas() {
                 .append("cliente", novaReserva.getCliente())
                 .append("pacote", novaReserva.getPacote())
                 .append("valor", novaReserva.getValor())
-                .append("dataSaida", novaReserva.getDataSaida().toString())
+                .append("data_Saida", novaReserva.getDataSaida().toString())
                 .append("status", novaReserva.getStatus());
 
         collection.replaceOne(filtro, novoDoc);

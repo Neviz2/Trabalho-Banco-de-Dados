@@ -65,12 +65,11 @@ public static Reserva fromDocument(Document doc) {
     String cliente = doc.getString("cliente");
     String pacote = doc.getString("pacote");
 
-    // Solução segura para qualquer tipo numérico (Integer ou Double)
     Number valorNumber = doc.get("valor", Number.class);
     double valor = valorNumber != null ? valorNumber.doubleValue() : 0.0;
 
-    // Trata a data como string — mas protege contra null
-    String dataSaidaStr = doc.getString("dataSaida");
+    // CORREÇÃO: Altera "dataSaida" para "data_saida"
+    String dataSaidaStr = doc.getString("data_saida");
     LocalDate dataSaida = (dataSaidaStr != null && !dataSaidaStr.isEmpty())
         ? LocalDate.parse(dataSaidaStr)
         : null;
